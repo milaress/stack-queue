@@ -1,59 +1,49 @@
 #include<iostream>
 using namespace std;
-struct Node
-{
+struct Node{
     int data;
-    Node* next;
+    Node *next;
+    Node(int a){
+        data=a;
+        next=nullptr;
+    }
 };
-class qeue
-{
-private:
-    Node* start;
-    Node* end;
-    int size;
-public:
-    qeue(): start(nullptr),end(nullptr),size(0){}
-
-    void push(int x){
-        Node* newnode = new Node[x];
-        if(start==nullptr){
-            start=end=newnode;
-        }else{
-            end->next=newnode;
-            end=newnode;
-        }
-        size++;
+class mystack{
+    private:
+    Node* top;
+    public:
+    mystack(){
+        top=nullptr;
     }
-
-    void pop(){
-        if(start==nullptr){
-            cout<<"the queue is already empty"<<endl;
+    void push(int a){
+        Node* newnode= new Node(a);
+            newnode->next=top;
+            top=newnode;
+    }
+    int pop(){
+        if(top==nullptr){
+            cout<<"stack already empty /n";
+            return -1;
         }
-        Node* temp=start;
-        start=start->next;
-        //if the queue becomes empty
-        if(start==nullptr){
-            end=nullptr;
-        }
+        int poppedvalue=top->data;
+        Node* temp= top;
+        top=top->next;
         delete temp;
-        size--;
+        return poppedvalue;
     }
-
-    int top(){
-        return start->data;
-    }
-
     bool empty(){
-        return start==nullptr;
+        return top==nullptr;
     }
-
-    void print(){
-        Node* temp=start;
-        while (temp!=nullptr){
-            cout<<temp->data<<" ";
-            temp=temp->next;
+    void display(){
+        if(top==nullptr){
+            cout<<"stack is empty";
+            return;
+        }
+        Node* it=top;
+        while(it!=nullptr){
+            cout<<it->data<<" ";
+            it=it->next;
         }
         cout<<endl;
     }
 };
-

@@ -22,13 +22,13 @@ int priority(char c){
 }
 class solution{
     public:
-    string nfixtoprefix(string s){
+    string infixtoprefix(string s){
         s=reverse(s);
         stack<char> st;
         string output="";
         for(int i=0;i<s.size();i++){
             char c=s[i];
-            if((c>='A'&&c<='Z')||(c>='a'&&c<='z'||(c>='0'&&c<='9'))){
+            if((c>='A'&&c<='Z')||(c>='a'&&c<='z')||(c>='0'&&c<='9')){
                 output+=c;
             }
             else if(s[i]=='('){
